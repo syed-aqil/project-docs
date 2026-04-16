@@ -188,7 +188,8 @@ flowchart TB
 5. **Select Model** - Choose a home model available for this lot.
 6. **Select Elevation** - Choose an elevation for the selected model.
 7. **Eligibility Check** - The system checks for rule violations (e.g., incompatible lot/model combinations). If violations are found, you will see a warning modal but can still choose to "Create Anyway".
-8. **Deal Created** - The system:
+8. **Select Realtor Agent** - Choose a Realtor Agent for the Deal 
+9. **Deal Created** - The system:
    - Sets the deal status to **Selection**
    - Changes the lot status to **Reserved**
    - Assigns you as the **primary sales agent** automatically
