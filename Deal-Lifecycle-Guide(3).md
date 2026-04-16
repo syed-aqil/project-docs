@@ -77,33 +77,40 @@ flowchart TD
 ```
 
 ### Deal & Lot Status Synchronization
-
-```mermaid
 flowchart LR
-    subgraph Deal Status
-        DS1[Selection]
-        DS2[Contract Ready]
-        DS3[Pending Offer]
-        DS4[Under Contract]
-        DS5[Final Sale]
-        DS6[Cancelled]
-    end
+ subgraph subGraph0["Deal Status"]
+    direction TB
+        DS1(["Selection"])
+        DS2(["Contract Ready"])
+        DS3(["Pending Offer"])
+        DS4(["Under Contract"])
+        DS5(["Final Sale"])
+        DS6(["Cancelled"])
+  end
+ subgraph subGraph1["Lot Status"]
+    direction TB
+        LS1(["Open"])
+        LS2(["Reserved"])
+        LS3(["Offer"])
+        LS4(["Sold"])
+  end
+    DS1 -. affects .-> LS2
+    DS2 -. affects .-> LS2
+    DS3 -. affects .-> LS3
+    DS4 -. affects .-> LS3
+    DS5 -. affects .-> LS4
+    DS6 -. resets to .-> LS1
 
-    subgraph Lot Status
-        LS1[Open]
-        LS2[Reserved]
-        LS3[Offer]
-        LS4[Sold]
-    end
-
-    DS1 -.-> LS2
-    DS2 -.-> LS2
-    DS3 -.-> LS3
-    DS4 -.-> LS3
-    DS5 -.-> LS4
-    DS6 -.-> LS1
-```
-
+    style DS1 fill:#C8E6C9,stroke:#000000,stroke-width:0px,color:#000,stroke-dasharray:0
+    style DS2 fill:#BBDEFB,stroke:#fbc02d,stroke-width:0px,color:#000,stroke-dasharray:0
+    style DS3 fill:#fff5cc,stroke:#fbc02d,stroke-width:0px,color:#000,stroke-dasharray:0
+    style DS4 fill:#fbc02d,stroke:#fbc02d,stroke-width:0px,color:#000,stroke-dasharray:0
+    style DS5 fill:#2e7d32,stroke:#2e7d32,stroke-width:0px,color:#000,stroke-dasharray:0
+    style DS6 fill:#ffcdd2,stroke:#c62828,stroke-width:0px,color:#000,stroke-dasharray:0
+    style LS1 fill:#e3f2fd,stroke:#1565c0,stroke-width:0px,color:#000,stroke-dasharray:0
+    style LS2 fill:#bbdefb,stroke:#1976d2,stroke-width:0px,color:#000,stroke-dasharray:0
+    style LS3 fill:#90caf9,stroke:#0d47a1,stroke-width:0px,color:#000,stroke-dasharray:0
+    style LS4 fill:#00C853,stroke:none,stroke-width:2px,color:#000
 ---
 
 ## 3. Deal Statuses Explained
