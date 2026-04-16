@@ -152,17 +152,31 @@ Before you can create a deal, the following **must** be in place:
 ### Creation Steps
 
 ```mermaid
-flowchart LR
-    A[Select Sales Office] --> B[Select Prospect]
-    B --> C[Select Project]
-    C --> D[Select Lot]
-    D --> E[Select Model]
-    E --> F[Select Elevation]
-    F --> G{Eligibility Check}
-    G -->|Pass| H[Create Deal]
-    G -->|Violations Found| I[Review Warnings]
-    I -->|Create Anyway| H
-    I -->|Go Back| D
+flowchart TB
+    A(["Select Sales Office"]) --> B(["Select Prospect"])
+    B --> C(["Select Project"])
+    C --> D(["Select Lot"])
+    D --> E["Select Model"]
+    E --> F["Select Elevation"]
+    F --> G{"Eligibility Check"}
+    G -- Pass --> H(["Create Deal"])
+    G -- Violations Found --> I["Review Warnings"]
+    I -- Create Anyway --> H
+    I -- Go Back --> D
+
+     A:::step
+     B:::step
+     C:::step
+     D:::step
+     E:::step
+     F:::step
+     G:::decision
+     H:::outcome
+     I:::warning
+    classDef step fill:#f9f9f9,stroke:#cccccc,stroke-width:1px,color:#1a1a1a,rx:10,ry:10
+    classDef decision fill:#f2f2f2,stroke:#cccccc,stroke-width:1px,color:#1a1a1a,rx:10,ry:10,font-weight:600
+    classDef outcome fill:#f9f9f9,stroke:#cccccc,stroke-width:1px,color:#1a1a1a,rx:10,ry:10
+    classDef warning fill:#fff7e6,stroke:#cccccc,stroke-width:1px,color:#1a1a1a,rx:10,ry:10
 ```
 
 1. **Select Sales Office** - Choose the sales office managing this deal.
