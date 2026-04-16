@@ -159,9 +159,10 @@ flowchart TB
     D --> E["Select Model"]
     E --> F["Select Elevation"]
     F --> G{"Eligibility Check"}
-    G -- Pass --> H(["Create Deal"])
+    G -- Pass --> J(["Select Realtor Agent"])
+    J --> H(["Create Deal"])
     G -- Violations Found --> I["Review Warnings"]
-    I -- Create Anyway --> H
+    I -- Create Anyway --> J
     I -- Go Back --> D
 
      A:::step
@@ -173,6 +174,7 @@ flowchart TB
      G:::decision
      H:::outcome
      I:::warning
+     J:::step
     classDef step fill:#f9f9f9,stroke:#cccccc,stroke-width:1px,color:#1a1a1a,rx:10,ry:10
     classDef decision fill:#f2f2f2,stroke:#cccccc,stroke-width:1px,color:#1a1a1a,rx:10,ry:10,font-weight:600
     classDef outcome fill:#f9f9f9,stroke:#cccccc,stroke-width:1px,color:#1a1a1a,rx:10,ry:10
