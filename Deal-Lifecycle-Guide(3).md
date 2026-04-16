@@ -113,7 +113,7 @@ flowchart LR
     style LS2 fill:#bbdefb,stroke:#1976d2,stroke-width:0px,color:#000,stroke-dasharray:0
     style LS3 fill:#90caf9,stroke:#0d47a1,stroke-width:0px,color:#000,stroke-dasharray:0
     style LS4 fill:#00C853,stroke:none,stroke-width:2px,color:#000
----
+
 ```
 
 ## 3. Deal Statuses Explained
