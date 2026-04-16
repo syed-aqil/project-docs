@@ -393,13 +393,19 @@ Signers are identified by entity type:
 | **Complete** | Signer has signed |
 | **Declined** | Signer declined to sign |
 
-### Resetting a Contract
+Here’s a cleaner, concise replacement in the same structured style:
 
-If the document hasn't been sent for signing yet (no EnvelopeId), you can **regenerate** the contract:
-- Existing document and signature records are deleted
-- A new document can be generated with different templates
+---
 
-**Restriction:** You cannot reset/regenerate a document that has already been sent for signing.
+### Void Contract
+
+If the Executive has **not signed** the contract yet, it can be voided—even if the Prospect and Co-Buyer have already signed.
+
+* Click **Void Contract** in the top-right corner of the **Documents** tab
+* Enter a reason in the **Void Reason** field (required)
+* Click **Void Contract** to confirm, or **Cancel** to exit
+
+**Restriction:** Once the Executive signs the contract, the **Void Contract** option is no longer available.
 
 ---
 
@@ -420,7 +426,71 @@ Executive signatures are a special part of the signing workflow visible in the *
 
 - **Sent** - Shows deals in Pending Offer status where non-executive signatures are done, waiting on executive
 - **Complete** - Shows all deals with completed signatures regardless of deal status
+  
+```mermaid
 
+flowchart TB
+    A(["Deal in Contract Ready Status"]) --> B(["Select Document Templates"])
+    B --> C(["Generate Contract PDF"])
+    C --> D(["Review Generated Document"])
+    D --> E{"Choose Signing Method"}
+
+    E --> F["DocuSign (Remote)"]
+    E --> G["DocuSign In-Person"]
+
+    F --> H["Signers Receive Email"]
+    G --> I["In-Person Signing Session"]
+
+    H --> J{"All Non-Executive Signatures Complete?"}
+    I --> J
+
+    J -- No --> H
+    J -- Yes --> K["Move to Executive Console"]
+
+    K --> L{"Executive Signed?"}
+    
+    L -- No --> M["Pending Executive Approval"]
+    M --> N["Executive Reviews & Signs"]
+    N --> O["Document Status = Complete"]
+
+    L -- Yes --> O
+
+    %% VOID FLOW
+    L -- Not Signed Yet --> P["Click Void Contract"]
+    P --> Q["Enter Void Reason"]
+    Q --> R{"Confirm Void?"}
+    R -- Yes --> S["Contract Voided"]
+    S --> B
+    R -- Cancel --> D
+
+    %% STYLES
+    A:::step
+    B:::step
+    C:::step
+    D:::step
+    F:::step
+    G:::step
+    H:::step
+    I:::step
+    K:::step
+    M:::warning
+    N:::step
+    P:::warning
+    Q:::step
+
+    E:::decision
+    J:::decision
+    L:::decision
+    R:::decision
+
+    O:::outcome
+    S:::outcome
+
+    classDef step fill:#e6f0ff,stroke:#4d88ff,stroke-width:1.5px,color:#003366,rx:10,ry:10
+    classDef decision fill:#f0e6ff,stroke:#9933ff,stroke-width:1.5px,color:#330066,rx:10,ry:10,font-weight:600
+    classDef outcome fill:#e6ffe6,stroke:#33cc66,stroke-width:1.5px,color:#003300,rx:10,ry:10
+    classDef warning fill:#fff4e6,stroke:#ff9933,stroke-width:1.5px,color:#663300,rx:10,ry:10
+```
 ### Who Can Access
 
 - Executive, SuperAdmin, Admin, LegalUser roles
