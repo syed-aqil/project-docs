@@ -339,8 +339,6 @@ This is a **two-step process**:
 
 ## 6. Document Generation & Signing
 
-### Overview
-
 ```mermaid
 flowchart TD
     A[Deal in Contract Ready status] --> B[Select Document Templates]
